@@ -1,0 +1,153 @@
+## File: aria2.conf
+## Improved for speed and reliability
+
+###############################
+# Directory & Log Settings
+###############################
+
+# The directory to store the downloaded file.
+dir=/path/to/downloads
+
+# Input file to store the session.
+# Use "touch /path/to/aria2.session" to create it first.
+input-file=/path/to/aria2.session
+
+# Save error/unfinished downloads to this file on exit.
+save-session=/path/to/aria2.session
+
+# Save session even if the download is completed or removed.
+# This keeps your session file clean but preserves history if needed.
+# Default: 0 (Save only on exit)
+save-session-interval=60
+
+# Log file path (optional, uncomment to enable)
+# log=/path/to/aria2.log
+# log-level=notice
+
+###############################
+# Download Connection Settings
+###############################
+
+# Maximum number of concurrent downloads.
+# Default: 5
+max-concurrent-downloads=5
+
+# The maximum number of connections to one server for each download.
+# Default: 1
+max-connection-per-server=16
+
+# Aria2 will split a file into this many parts and download them in parallel.
+# Default: 5
+split=16
+
+# Minimum split size. Aria2 won't split less than this.
+# Default: 20M
+min-split-size=10M
+
+# Disable IPv6 if you have connection issues (optional)
+# disable-ipv6=true
+
+# User Agent (Spoofing to look like a browser helps with some direct links)
+user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/119.0.0.0 Safari/537.36
+
+###############################
+# RPC Settings (For WebUI / Remote Control)
+###############################
+
+# Enable JSON-RPC/XML-RPC server.
+enable-rpc=true
+
+# Pause download after added. This option is effective only when --enable-rpc=true is given.
+pause=false
+
+# Allow all origins (CORS). Useful if using web interfaces like AriaNg.
+rpc-allow-origin-all=true
+
+# Listen to all network interfaces.
+rpc-listen-all=true
+
+# RPC port. Default: 6800
+rpc-listen-port=6800
+
+# RPC Secret (Authentication token). Keep this secure!
+# You will need to enter this in your WebUI / Client.
+rpc-secret=YOUR_SECRET_TOKEN
+
+# Save the uploaded metadata to the directory.
+rpc-save-upload-metadata=true
+
+###############################
+# BitTorrent Settings
+###############################
+
+# Initial seeding ratio. (1.0 = upload as much as you downloaded)
+# Set to 0.0 to stop seeding immediately after download completes.
+seed-ratio=1.0
+
+# Seeding time in minutes.
+# seed-time=60
+
+# Enable Local Peer Discovery (LPD).
+bt-enable-lpd=true
+
+# Maximum number of peers per torrent.
+bt-max-peers=55
+
+# Download speed limit (0 = unlimited)
+max-download-limit=0
+
+# Upload speed limit (0 = unlimited).
+# Setting this too low might affect download speed in BitTorrent.
+max-overall-upload-limit=0
+max-upload-limit=0
+
+# Pre-allocate file space to reduce fragmentation (takes time before download starts).
+# Options: none, prealloc, trunc, falloc. 'falloc' is best for modern filesystems (ext4/xfs/ntfs).
+file-allocation=falloc
+
+# If true, aria2 checks the data integrity of the file using a hash.
+check-integrity=true
+
+# Save metadata (.torrent file) to .aria2 file.
+bt-save-metadata=true
+
+# Load the torrent file into memory to speed up access.
+bt-load-saved-metadata=true
+
+# Force encryption for BitTorrent (improves privacy and helps avoid ISP throttling)
+bt-require-crypto=true
+bt-min-crypto-level=arc4
+
+# DHT (Distributed Hash Table) Settings
+# Essential for magnet links without trackers.
+enable-dht=true
+dht-file-path=/path/to/dht.dat
+enable-dht6=true
+dht-file-path6=/path/to/dht6.dat
+
+# Peer Exchange (PEX)
+enable-peer-exchange=true
+
+###############################
+# Advanced / Performance
+###############################
+
+# Overall download speed limit.
+max-overall-download-limit=0
+
+# Disk cache.
+# Reduces disk I/O. If you have plenty of RAM, increase this (e.g., 64M or 128M).
+disk-cache=32M
+
+# Timeout settings
+connect-timeout=60
+timeout=60
+
+# Retry settings
+max-tries=5
+retry-wait=3
+
+# Resume support
+always-resume=true
+
+## End of Config
