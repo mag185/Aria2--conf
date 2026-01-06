@@ -1,0 +1,254 @@
+Here is a comprehensive, well-commented `aria2.conf` configuration file optimized for typical use cases (downloading, torrenting, and general performance).
+
+---
+
+## Complete `aria2.conf` File
+
+```ini
+## ============================================
+## Aria2 Configuration File
+## Location: ~/.aria2/aria2.conf (Linux/Mac)
+##           C:\Users\<username>\.aria2\aria2.conf (Windows)
+## ============================================
+
+## ============================================
+## Basic Settings
+## ============================================
+
+# Download directory
+dir=/home/username/Downloads
+
+# Log file (comment out to disable)
+log=/home/username/.aria2/aria2.log
+
+# Log level: debug, info, notice, warn, error
+log-level=notice
+
+# Console output level
+console-log-level=notice
+
+## ============================================
+## Download Settings
+## ============================================
+
+# Maximum concurrent downloads
+max-concurrent-downloads=5
+
+# Continue downloading partially downloaded files
+continue=true
+
+# Maximum connections per server
+max-connection-per-server=16
+
+# Minimum split size (don't split files smaller than this)
+min-split-size=10M
+
+# Number of splits per file
+split=16
+
+# Disk cache size (0 to disable)
+disk-cache=64M
+
+# File allocation method: none, prealloc, trunc, falloc
+# falloc is fastest on ext4/NTFS, use 'none' for slow disks
+file-allocation=falloc
+
+# Download timeout (seconds)
+timeout=60
+
+# Max retries
+max-tries=5
+
+# Retry wait time (seconds)
+retry-wait=10
+
+# Don't download file if it already exists
+auto-file-renaming=true
+
+# Allow overwrite
+allow-overwrite=false
+
+## ============================================
+## HTTP/FTP/SFTP Settings
+## ============================================
+
+# User agent
+user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36
+
+# Referer (use * to send the request URI as referer)
+referer=*
+
+# Enable HTTP/1.1 keep-alive
+enable-http-keep-alive=true
+
+# Enable HTTP pipelining
+enable-http-pipelining=true
+
+# HTTP accept-gzip
+http-accept-gzip=true
+
+# Check SSL certificate
+check-certificate=true
+
+## ============================================
+## BitTorrent Settings
+## ============================================
+
+# Enable DHT (IPv4)
+enable-dht=true
+
+# Enable DHT (IPv6)
+enable-dht6=true
+
+# DHT listen port
+dht-listen-port=6881-6999
+
+# DHT file path (IPv4)
+dht-file-path=/home/username/.aria2/dht.dat
+
+# DHT file path (IPv6)
+dht-file-path6=/home/username/.aria2/dht6.dat
+
+# Enable Peer Exchange
+enable-peer-exchange=true
+
+# Enable Local Peer Discovery
+bt-enable-lpd=true
+
+# BitTorrent listen port
+listen-port=6881-6999
+
+# Maximum peers per torrent
+bt-max-peers=100
+
+# Maximum open files
+bt-max-open-files=100
+
+# Seed ratio (0.0 to disable seeding after download)
+seed-ratio=1.0
+
+# Seed time (minutes, 0 to disable)
+seed-time=60
+
+# Force encryption
+bt-require-crypto=false
+
+# Minimum encryption level
+bt-min-crypto-level=plain
+
+# Save metadata as .torrent file
+bt-save-metadata=true
+
+# Load metadata from .torrent file if available
+bt-load-saved-metadata=true
+
+# Remove unselected files after download completes
+bt-remove-unselected-file=true
+
+# Force seeding after hash check
+bt-force-encryption=false
+
+# Detach seed only tasks
+bt-detach-seed-only=true
+
+# BT tracker list (updated regularly - see comment below)
+bt-tracker=udp://tracker.opentrackr.org:1337/announce,udp://open.demonii.com:1337/announce,udp://tracker.openbittorrent.com:6969/announce,udp://exodus.desync.com:6969/announce,udp://tracker.torrent.eu.org:451/announce
+
+## ============================================
+## RPC Settings (for remote control / WebUI)
+## ============================================
+
+# Enable RPC
+enable-rpc=true
+
+# RPC listen port
+rpc-listen-port=6800
+
+# RPC listen all interfaces (set to false for local only)
+rpc-listen-all=false
+
+# RPC secret token (set your own secure password)
+rpc-secret=your_secret_token_here
+
+# RPC allow origin all
+rpc-allow-origin-all=true
+
+# Save upload metadata
+rpc-save-upload-metadata=true
+
+# Secure RPC (requires certificate)
+# rpc-secure=true
+# rpc-certificate=/path/to/certificate.pem
+# rpc-private-key=/path/to/private-key.pem
+
+## ============================================
+## Session & Resume Settings
+## ============================================
+
+# Session file (saves download progress)
+input-file=/home/username/.aria2/aria2.session
+
+# Save session on exit
+save-session=/home/username/.aria2/aria2.session
+
+# Save session interval (seconds, 0 = only on exit)
+save-session-interval=60
+
+# Force save session
+force-save=true
+
+## ============================================
+## Advanced Performance Settings
+## ============================================
+
+# Disable IPv6 (enable if you have IPv6 issues)
+disable-ipv6=false
+
+# Maximum overall download speed (0 = unlimited)
+max-overall-download-limit=0
+
+# Maximum download speed per task (0 = unlimited)
+max-download-limit=0
+
+# Maximum overall upload speed (0 = unlimited)
+max-overall-upload-limit=1M
+
+# Maximum upload speed per task (0 = unlimited)
+max-upload-limit=0
+
+# Optimize concurrent piece selection
+optimize-concurrent-downloads=true
+
+# Stream piece selection (good for streaming while downloading)
+stream-piece-selector=default
+
+# Piece selection algorithm
+piece-selection=default
+
+# Always resume download
+always-resume=true
+
+# Async DNS
+async-dns=true
+
+# No conf file (if running with command line only)
+# no-conf=true
+
+## ============================================
+## Notification / Hook Settings (optional)
+## ============================================
+
+# Execute command on download complete
+# on-download-complete=/path/to/script.sh
+
+# Execute command on download error
+# on-download-error=/path/to/error-script.sh
+
+# Execute command on download start
+# on-download-start=/path/to/start-script.sh
+
+## ============================================
+## End of Configuration
+## ============================================
+```
+
